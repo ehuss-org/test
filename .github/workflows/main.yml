@@ -8,13 +8,22 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - name: Test
-      run: test ! -f foo
+      - uses: actions/checkout@master
+      - name: Test
+        run: test ! -f foo
   test2:
     name: Test2
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - name: Test
-      run: test ! -f bar
+      - uses: actions/checkout@master
+      - name: Test
+        run: test ! -f bar
+  success:
+    name: Success gate
+    runs-on: ubuntu-latest
+    needs:
+      - test
+      - test2
+    if: "success()"
+    steps:
+      - run: echo success
