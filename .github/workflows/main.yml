@@ -26,4 +26,17 @@ jobs:
       - test2
     if: "success()"
     steps:
-      - run: echo success
+      - name: mark the job as a success
+        run: echo success
+  failure:
+    name: Failure gate
+    runs-on: ubuntu-latest
+    needs:
+      - test
+      - test2
+    if: "!success()"
+    steps:
+      - name: mark the job as a failure
+        run: |
+          echo One or more jobs failed
+          exit 1
