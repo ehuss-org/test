@@ -25,27 +25,15 @@ jobs:
       - uses: actions/checkout@master
       - name: Test
         run: ./test.sh
-  success:
-    name: Success gate
-    runs-on: ubuntu-latest
+  ci-success:
+    name: ci
+    if: always()
     needs:
       - test
       - test2
       - test3
-    if: "success()"
-    steps:
-      - name: mark the job as a success
-        run: echo success
-  failure:
-    name: Failure gate
     runs-on: ubuntu-latest
-    needs:
-      - test
-      - test2
-      - test3
-    if: "!success()"
     steps:
-      - name: mark the job as a failure
-        run: |
-          echo One or more jobs failed
-          exit 1
+      - run: jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
+      - name: Done
+        run: exit 0
