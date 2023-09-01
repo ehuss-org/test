@@ -21,6 +21,7 @@ jobs:
   test3:
     name: Test3
     runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'pull_request' }}
     steps:
       - uses: actions/checkout@master
       - name: Test
