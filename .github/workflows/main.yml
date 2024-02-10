@@ -33,7 +33,7 @@ jobs:
           echo $RANDOM >> README.md
           git add README.md
           git commit -m "Test random"
-          git push -u origin cron-br
+          git push -f -u origin cron-br
           gh workflow run open_pr.yml -f branch=cron-br
 
   success:
