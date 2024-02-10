@@ -2,6 +2,8 @@ name: CI
 on:
   pull_request:
   merge_group:
+  schedule:
+    - cron: '* * * * *'
 
 jobs:
   test:
@@ -10,28 +12,30 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Test
-        run: test ! -f foo
-  test2:
-    name: Test2
+        run: cat README.md
+
+  open_pr:
+    name: Open PR
     runs-on: ubuntu-latest
+    if: github.event_name == 'schedule'
+    needs: [success]
     steps:
       - uses: actions/checkout@master
-      - name: Test
-        run: test ! -f bar
-  test3:
-    name: Test3
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-      - name: Test
-        run: ./test.sh
-  ci-success:
-    name: ci
+      - run: |
+          git config user.name "Deploy from CI"
+          git config user.email ""
+          git branch -B cron-br
+          echo $RANDOM >> README.md
+          git add README.md
+          git commit -m "Test random"
+          git push -u origin cron-br
+          gh workflow run open_pr.yml -f branch=cron-br
+
+  success:
+    name: Success gate
     if: always()
     needs:
       - test
-      - test2
-      - test3
     runs-on: ubuntu-latest
     steps:
       - run: jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'

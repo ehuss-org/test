@@ -1,0 +1,15 @@
+name: Open PR
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: "Branch to use"
+        type: string
+        required: true
+
+jobs:
+  open_pr:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          gh pr create --repo ehuss-org/test --base main --head ${{ inputs.branch }} --title "Test PR" --body "Test"
