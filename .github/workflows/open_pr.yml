@@ -13,6 +13,8 @@ permissions:
 jobs:
   open_pr:
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
     steps:
       - run: |
           gh pr create --repo ehuss-org/test --base main --head ${{ inputs.branch }} --title "Test PR" --body "Test"
