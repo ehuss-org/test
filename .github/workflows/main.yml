@@ -24,7 +24,7 @@ jobs:
       - run: |
           git config user.name "Deploy from CI"
           git config user.email ""
-          git branch -B cron-br
+          git checkout -B cron-br
           echo $RANDOM >> README.md
           git add README.md
           git commit -m "Test random"
