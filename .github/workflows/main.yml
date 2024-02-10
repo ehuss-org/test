@@ -19,6 +19,8 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event_name == 'schedule'
     needs: [success]
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@master
       - run: |
