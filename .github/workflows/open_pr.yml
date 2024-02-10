@@ -7,6 +7,9 @@ on:
         type: string
         required: true
 
+permissions:
+  pull-requests: write
+
 jobs:
   open_pr:
     runs-on: ubuntu-latest
