@@ -1,0 +1,24 @@
+name: CI
+on:
+  merge_group:
+  pull_request:
+    branches:
+      - "**"
+
+defaults:
+  run:
+    shell: bash
+
+permissions:
+  contents: read
+
+# concurrency:
+#   group: "${{ github.workflow }}-${{ github.ref }}"
+#   cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v6
+    - run: sleep 100
