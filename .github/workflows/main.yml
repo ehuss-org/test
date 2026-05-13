@@ -1,21 +1,10 @@
 name: CI
 on:
   push:
-  # merge_group:
-  # pull_request:
-  #   branches:
-  #     - "**"
 
 defaults:
   run:
     shell: bash
-
-# permissions:
-#   contents: read
-
-# concurrency:
-#   group: "${{ github.workflow }}-${{ github.ref }}"
-#   cancel-in-progress: true
 
 jobs:
   test:
@@ -23,4 +12,4 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - uses: Swatinem/rust-cache@c19371144df3bb44fab255c43d04cbc2ab54d1c4 # v2.9.1
-      - run: cargo install ripgrep@15.1.0
+      - run: cargo install ripgrep@15.0.0
