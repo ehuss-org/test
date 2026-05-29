@@ -15,4 +15,4 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - run: df -h
-      - run: sudo apt-get -o DPkg::Lock::Timeout=60 -qq remove -y --fix-missing '^temurin-.*-jdk'
+      - run: sudo apt-get remove -y '^temurin-.*-jdk'
