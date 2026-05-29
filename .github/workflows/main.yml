@@ -14,4 +14,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - run: sudo apt-get -qq remove -y --fix-missing azure-cli
+      - run: df -h
+      - run: sudo apt-get -qq remove -y --fix-missing azure-cli google-chrome-stable microsoft-edge-stable powershell
