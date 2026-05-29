@@ -15,4 +15,4 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - run: df -h
-      - run: sudo apt-get -o DPkg::Lock::Timeout=60 -qq remove -y --fix-missing azure-cli google-chrome-stable microsoft-edge-stable powershell '^aspnetcore-.*' '^dotnet-.*' '^llvm-.*' '^mongodb-.*' '^temurin-.*-jdk' 'buildah' 'firefox' 'google-cloud-cli' 'google-cloud-sdk' 'kubectl' 'libgl1-mesa-dri' 'mono-devel' 'php.*' 'podman' 'skopeo'
+      - run: sudo apt-get -o DPkg::Lock::Timeout=60 -qq remove -y --fix-missing '^temurin-.*-jdk'
