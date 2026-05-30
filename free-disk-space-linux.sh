@@ -277,7 +277,8 @@ cleanPackages() {
     fi
 
     WAIT_DPKG_LOCK="-o DPkg::Lock::Timeout=60"
-    sudo apt-get ${WAIT_DPKG_LOCK} -qq remove -y "${packages[@]}"
+    sudo apt-get update -qq
+    sudo apt-get ${WAIT_DPKG_LOCK} -qq remove -y --fix-missing "${packages[@]}"
 
     sudo apt-get ${WAIT_DPKG_LOCK} autoremove -y \
         || echo "::warning::The command [sudo apt-get autoremove -y] failed"
