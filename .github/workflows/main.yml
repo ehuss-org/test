@@ -6,6 +6,10 @@ defaults:
   run:
     shell: bash
 
+env:
+  CARGO_HTTP_DEBUG: true
+  CARGO_LOG: network=debug
+
 jobs:
   test1:
     runs-on: ubuntu-latest
