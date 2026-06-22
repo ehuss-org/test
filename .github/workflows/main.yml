@@ -6,13 +6,45 @@ defaults:
   run:
     shell: bash
 
-env:
-  RG_VERSION: 15.1.0
-
 jobs:
-  test:
+  test1:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - run: df -h
-      - run: ./free-disk-space-linux.sh
+      - uses: actions/checkout@v7
+      - run: cargo fetch
+
+  test2:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - run: cargo fetch
+
+  test3:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - run: cargo fetch
+
+  test4:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - run: cargo fetch
+
+  test5:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - run: cargo fetch
+
+  test6:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - run: cargo fetch
+
+  test7:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - run: cargo fetch
